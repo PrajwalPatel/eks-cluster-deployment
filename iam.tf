@@ -24,10 +24,10 @@ data "aws_iam_policy_document" "assume_node_role" {
   }
 }
 
-resource "aws_iam_role" "example" {
-  name               = "eks-cluster-example-2"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-}
+# resource "aws_iam_role" "example" {
+#  name               = "eks-cluster-example-2"
+#  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+#}
 
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
@@ -41,10 +41,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
   role       = aws_iam_role.example.name
 }
 
-resource "aws_iam_role" "worker" {
-  name               = "eks-node-role-2"
-  assume_role_policy = data.aws_iam_policy_document.assume_node_role.json
-}
+#resource "aws_iam_role" "worker" {
+#  name               = "eks-node-role-2"
+#  assume_role_policy = data.aws_iam_policy_document.assume_node_role.json
+#}
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
